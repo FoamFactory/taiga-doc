@@ -20,8 +20,9 @@ And each one has its own dependencies, at compile time and runtime.
 Before starting
 ---------------
 
-This tutorial assumes that you are using a clean, recently updated, **ubuntu 16.04** image.
-Notes for Debian installations are included at the end of the appropriate sections.
+This tutorial assumes that you are using a clean, recently updated, **Ubuntu 16.04**
+or **Ubuntu 18.04** image. Notes for Debian installations are included at the
+end of the appropriate sections.
 
 **Taiga installation must be done with a "normal" user, never with root.**
 
@@ -230,6 +231,14 @@ The frontend application runs entirely in a browser, and thus must be deployed a
 In the case of **taiga-front** we have used other languages. Because of this, you will need to install some
 additional dependencies that compile **taiga-front** code into something the browser can understand.
 
+System Dependencies
+^^^^^^^^^^^^^^^^^^^
+
+There are a few system dependencies that are necessary for the npm command to succeed.
+
+---
+sudo apt-get install -y libsass0 libsass-dev
+---
 
 Ruby and Gems
 ^^^^^^^^^^^^^
@@ -264,18 +273,32 @@ Restart the shell, source ~/.bashrc, or run bash again to make the path changes 
 NodeJS and friends
 ^^^^^^^^^^^^^^^^^^
 
-NodeJS is used to execute **gulp**, a task execution tool used mainly for executing deployment and compilation tasks.
+NodeJS is used to execute **gulp**, a task execution tool used mainly for executing
+deployment and compilation tasks. This installs node version *8.9.3*, a version
+known to work with taiga.
 
-.Install nodejs
+.Install nvm
+`nvm` is the _Node Version Manager. It is the easiest way to install and maintain
+multiple instances of node.
 [source,bash]
 ----
-sudo apt-get install -y nodejs npm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ----
+
+After performing this command, you will need to restart your terminal.
+
+.Install node v8.9.3:
+[source,bash]
+---
+nvm install 8.9.3
+nvm use 8.9.3
+---
 
 .Make sure your bash responds to the node command to have a smooth installation of gulp
 [source, bash]
 ----
-node
+node --version
+v8.9.3
 ----
 If you get a "Command not found" error, then run
 [source, bash]
